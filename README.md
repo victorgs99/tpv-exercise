@@ -1,3 +1,6 @@
+# PATRONES DE DISEÑO
+
+1. Hacer fork del proyecto y trabajarlo en sus propios repositorios
 1. Refactorizar el código para utilizar singleton para evitar crear múltiples instancias para las clases que representan
 dispositivos (display, teclado, modem, gps, ethernet)
 1. Refactorizar el código para utilizar builder para construir el objeto Transaction (tomar como ejemplo CardBuilder y ExpirationDateBuilder)
