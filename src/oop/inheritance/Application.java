@@ -28,7 +28,7 @@ public class Application {
 
     public void showMenu() {
         if (supportedTerminal == SupportedTerminal.INGENICO) {
-            IngenicoDisplay ingenicoDisplay = new IngenicoDisplay();
+            IngenicoDisplay ingenicoDisplay = IngenicoDisplay.getInstance();
 
             ingenicoDisplay.showMessage(5, 5, "MENU");
             ingenicoDisplay.showMessage(5, 10, "1. VENTA");
@@ -56,7 +56,7 @@ public class Application {
     public void doSale() {
         IngenicoCardSwipper cardSwipper = new IngenicoCardSwipper();
         IngenicoChipReader chipReader = new IngenicoChipReader();
-        IngenicoDisplay ingenicoDisplay = new IngenicoDisplay();
+        IngenicoDisplay ingenicoDisplay = IngenicoDisplay.getInstance();
         IngenicoKeyboard ingenicoKeyboard = new IngenicoKeyboard();
         Card card;
 
@@ -143,7 +143,7 @@ public class Application {
 
     public void clearScreen() {
         if (supportedTerminal == SupportedTerminal.INGENICO) {
-            IngenicoDisplay ingenicoDisplay = new IngenicoDisplay();
+            IngenicoDisplay ingenicoDisplay = IngenicoDisplay.getInstance();
 
             ingenicoDisplay.clear();
         } else {
