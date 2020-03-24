@@ -1,6 +1,9 @@
 package oop.inheritance;
 
 import java.time.LocalDateTime;
+import java.util.EnumMap;
+import java.util.HashMap;
+import java.util.Map;
 
 import oop.inheritance.data.Card;
 import oop.inheritance.data.CommunicationType;
@@ -14,6 +17,7 @@ import oop.inheritance.ingenico.IngenicoPrinter;
 import oop.inheritance.tpv.AbstractTPVFactory;
 import oop.inheritance.tpv.CardSwipper;
 import oop.inheritance.tpv.ChipReader;
+import oop.inheritance.tpv.CommunicationDevice;
 import oop.inheritance.tpv.Display;
 import oop.inheritance.tpv.Keyboard;
 
@@ -95,31 +99,15 @@ public class Application {
     }
 
     private TransactionResponse sendSale(Transaction transaction) {
-        IngenicoEthernet ethernet = new IngenicoEthernet();
-        IngenicoModem modem = new IngenicoModem();
-        IngenicoGPS gps = new IngenicoGPS();
-        TransactionResponse transactionResponse = null;
 
-        switch (communicationType) {
-            case ETHERNET:
-                ethernet.open();
-                ethernet.send(transaction);
-                transactionResponse = ethernet.receive();
-                ethernet.close();
-                break;
-            case GPS:
-                gps.open();
-                gps.send(transaction);
-                transactionResponse = gps.receive();
-                gps.close();
-                break;
-            case MODEM:
-                modem.open();
-                modem.send(transaction);
-                transactionResponse = modem.receive();
-                modem.close();
-                break;
-        }
+        Map<CommunicationType, CommunicationDevice> communicationDeviceMap = abstractTPVFactory.getCommunicationDeviceMap();
+
+        CommunicationDevice communicationDevice = communicationDeviceMap.get(CommunicationType.ETHERNET);
+
+        communicationDevice.open();
+        communicationDevice.send(transaction);
+        TransactionResponse transactionResponse = communicationDevice.receive();
+        communicationDevice.close();
 
         return transactionResponse;
     }
