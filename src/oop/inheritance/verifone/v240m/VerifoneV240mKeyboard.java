@@ -1,6 +1,8 @@
 package oop.inheritance.verifone.v240m;
 
-public class VerifoneV240mKeyboard {
+import oop.inheritance.core.TPVKeyboard;
+
+public class VerifoneV240mKeyboard implements TPVKeyboard {
 
     public String get(){
         return "Key pressed";

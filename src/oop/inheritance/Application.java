@@ -2,6 +2,9 @@ package oop.inheritance;
 
 import java.time.LocalDateTime;
 
+import oop.inheritance.core.TPVAbstractFactory;
+import oop.inheritance.core.TPVDisplay;
+import oop.inheritance.core.TPVKeyboard;
 import oop.inheritance.data.Card;
 import oop.inheritance.data.CommunicationType;
 import oop.inheritance.data.SupportedTerminal;
@@ -9,55 +12,42 @@ import oop.inheritance.data.Transaction;
 import oop.inheritance.data.TransactionResponse;
 import oop.inheritance.ingenico.IngenicoCardSwipper;
 import oop.inheritance.ingenico.IngenicoChipReader;
-import oop.inheritance.ingenico.IngenicoDisplay;
 import oop.inheritance.ingenico.IngenicoEthernet;
 import oop.inheritance.ingenico.IngenicoGPS;
 import oop.inheritance.ingenico.IngenicoKeyboard;
 import oop.inheritance.ingenico.IngenicoModem;
 import oop.inheritance.ingenico.IngenicoPrinter;
-import oop.inheritance.verifone.v240m.VerifoneV240mDisplay;
 
 public class Application {
 
-    private CommunicationType communicationType = CommunicationType.ETHERNET;
-    private SupportedTerminal supportedTerminal;
+    private final CommunicationType communicationType = CommunicationType.ETHERNET;
+    private final TPVAbstractFactory tpvFactory;
 
     public Application(SupportedTerminal supportedTerminal) {
-        this.supportedTerminal = supportedTerminal;
+        tpvFactory = TPVAbstractFactory.getFactory(supportedTerminal);
     }
 
     public void showMenu() {
-        if (supportedTerminal == SupportedTerminal.INGENICO) {
-            IngenicoDisplay ingenicoDisplay = new IngenicoDisplay();
+        TPVDisplay tpvDisplay = tpvFactory.getDisplay();
 
-            ingenicoDisplay.showMessage(5, 5, "MENU");
-            ingenicoDisplay.showMessage(5, 10, "1. VENTA");
-            ingenicoDisplay.showMessage(5, 13, "2. DEVOLUCION");
-            ingenicoDisplay.showMessage(5, 16, "3. REPORTE");
-            ingenicoDisplay.showMessage(5, 23, "4. CONFIGURACION");
-        } else {
-            VerifoneV240mDisplay verifoneV240mDisplay = new VerifoneV240mDisplay();
-
-            verifoneV240mDisplay.showMessage(5, 5, "MENU");
-            verifoneV240mDisplay.showMessage(5, 10, "1. VENTA");
-            verifoneV240mDisplay.showMessage(5, 13, "2. DEVOLUCION");
-            verifoneV240mDisplay.showMessage(5, 16, "3. REPORTE");
-            verifoneV240mDisplay.showMessage(5, 23, "4. CONFIGURACION");
-        }
-
+        tpvDisplay.showMessage(5, 5, "MENU");
+        tpvDisplay.showMessage(5, 10, "1. VENTA");
+        tpvDisplay.showMessage(5, 13, "2. DEVOLUCION");
+        tpvDisplay.showMessage(5, 16, "3. REPORTE");
+        tpvDisplay.showMessage(5, 23, "4. CONFIGURACION");
     }
 
     public String readKey() {
-        IngenicoKeyboard ingenicoKeyboard = new IngenicoKeyboard();
+        TPVKeyboard tpvKeyboard = tpvFactory.getKeyboard();
 
-        return ingenicoKeyboard.get();
+        return tpvKeyboard.get();
     }
 
     public void doSale() {
         IngenicoCardSwipper cardSwipper = new IngenicoCardSwipper();
         IngenicoChipReader chipReader = new IngenicoChipReader();
-        IngenicoDisplay ingenicoDisplay = new IngenicoDisplay();
-        IngenicoKeyboard ingenicoKeyboard = new IngenicoKeyboard();
+        TPVDisplay tpvDisplay = tpvFactory.getDisplay();
+        TPVKeyboard tpvKeyboard = tpvFactory.getKeyboard();
         Card card;
 
         do {
@@ -67,10 +57,10 @@ public class Application {
             }
         } while (card == null);
 
-        ingenicoDisplay.clear();
-        ingenicoDisplay.showMessage(5, 20, "Capture monto:");
+        tpvDisplay.clear();
+        tpvDisplay.showMessage(5, 20, "Capture monto:");
 
-        String amount = ingenicoKeyboard.get(); //Amount with decimal point as string
+        String amount = tpvKeyboard.get(); //Amount with decimal point as string
 
         Transaction transaction = new Transaction();
 
@@ -81,10 +71,10 @@ public class Application {
         TransactionResponse response = sendSale(transaction);
 
         if (response.isApproved()) {
-            ingenicoDisplay.showMessage(5, 25, "APROBADA");
+            tpvDisplay.showMessage(5, 25, "APROBADA");
             printReceipt(transaction, response.getHostReference());
         } else {
-            ingenicoDisplay.showMessage(5, 25, "DENEGADA");
+            tpvDisplay.showMessage(5, 25, "DENEGADA");
         }
     }
 
@@ -142,14 +132,8 @@ public class Application {
     }
 
     public void clearScreen() {
-        if (supportedTerminal == SupportedTerminal.INGENICO) {
-            IngenicoDisplay ingenicoDisplay = new IngenicoDisplay();
+        TPVDisplay tpvDisplay = tpvFactory.getDisplay();
 
-            ingenicoDisplay.clear();
-        } else {
-            VerifoneV240mDisplay verifoneV240mDisplay = new VerifoneV240mDisplay();
-
-            verifoneV240mDisplay.clear();
-        }
+        tpvDisplay.clear();
     }
 }

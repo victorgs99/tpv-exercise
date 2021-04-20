@@ -1,6 +1,8 @@
 package oop.inheritance.ingenico;
 
-public class IngenicoKeyboard {
+import oop.inheritance.core.TPVKeyboard;
+
+public class IngenicoKeyboard implements TPVKeyboard {
 
     /**
      * @return key pressed
