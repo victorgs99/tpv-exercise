@@ -1,6 +1,6 @@
 package oop.inheritance.verifone.vx520;
 
-public class VerifoneVx520Printer {
+public class VerifoneVx520Printer implements TPVPrinter{
 
     /**
      * Prints a message on the current line at the specified horizontal position

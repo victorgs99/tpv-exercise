@@ -13,4 +13,11 @@ public class Verifone690Factory extends TPVAbstractFactory{
     public TPVKeyboard getKeyboard() {
         return new VerifoneVx690Keyboard();
     }
+
+    @Override
+    public TPVPrinter getPrinter() {
+        return new VerifoneVx690Printer();
+    }
+
+
 }

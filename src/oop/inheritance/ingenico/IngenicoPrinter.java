@@ -1,6 +1,6 @@
 package oop.inheritance.ingenico;
 
-public class IngenicoPrinter {
+public class IngenicoPrinter implements TPVPrinter {
 
     /**
      * Prints a message on the current line at the specified horizontal position

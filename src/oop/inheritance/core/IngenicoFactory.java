@@ -14,4 +14,10 @@ public class IngenicoFactory extends TPVAbstractFactory{
     public TPVKeyboard getKeyboard() {
         return new IngenicoKeyboard();
     }
+
+    @Override
+    public TPVPrinter getPrinter() {
+        return new IngenicoPrinter();
+    }
+
 }

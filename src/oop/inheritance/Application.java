@@ -39,7 +39,6 @@ public class Application {
 
     public String readKey() {
         TPVKeyboard tpvKeyboard = tpvFactory.getKeyboard();
-
         return tpvKeyboard.get();
     }
 
@@ -79,16 +78,17 @@ public class Application {
     }
 
     private void printReceipt(Transaction transaction, String hostReference) {
-        IngenicoPrinter ingenicoPrinter = new IngenicoPrinter();
+
+        TPVPrinter tpvPrinter= tpvFactory.getPrinter();
         Card card = transaction.getCard();
 
-        ingenicoPrinter.print(5, "APROBADA");
-        ingenicoPrinter.lineFeed();
-        ingenicoPrinter.print(5, card.getAccount());
-        ingenicoPrinter.lineFeed();
-        ingenicoPrinter.print(5, "" + transaction.getAmountInCents());
-        ingenicoPrinter.lineFeed();
-        ingenicoPrinter.print(5, "________________");
+        tpvPrinter.print(5, "APROBADA");
+        tpvPrinter.lineFeed();
+        tpvPrinter.print(5, card.getAccount());
+        tpvPrinter.lineFeed();
+        tpvPrinter.print(5, "" + transaction.getAmountInCents());
+        tpvPrinter.lineFeed();
+        tpvPrinter.print(5, "________________");
 
     }
 
@@ -133,7 +133,6 @@ public class Application {
 
     public void clearScreen() {
         TPVDisplay tpvDisplay = tpvFactory.getDisplay();
-
         tpvDisplay.clear();
     }
 }

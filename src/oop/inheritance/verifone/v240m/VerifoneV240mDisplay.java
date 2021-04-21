@@ -13,7 +13,6 @@ public class VerifoneV240mDisplay implements TPVDisplay  {
      */
     public void showMessage(int x, int y, String message) {
     }
-
     /**
      * Clears the screen
      */

@@ -8,6 +8,8 @@ public abstract class TPVAbstractFactory {
 
     public abstract TPVKeyboard getKeyboard();
 
+    public abstract TPVPrinter getPrinter();
+
     public static TPVAbstractFactory getFactory(SupportedTerminal supportedTerminal){
         return switch (supportedTerminal) {
             case INGENICO -> new IngenicoFactory();
