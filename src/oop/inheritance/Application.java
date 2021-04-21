@@ -107,7 +107,8 @@ public class Application {
     private TransactionResponse sendSale(Transaction transaction) {
         TPVEthernet tpvEthernet = tpvFactory.getEthernet();
         TPVModem tpvModem = tpvFactory.getModem();
-        IngenicoGPS gps = new IngenicoGPS();
+        TPVGps tpvGps = tpvFactory.getGps();
+
         TransactionResponse transactionResponse = null;
 
         switch (communicationType) {
@@ -118,10 +119,10 @@ public class Application {
                 tpvEthernet.close();
                 break;
             case GPS:
-                gps.open();
-                gps.send(transaction);
-                transactionResponse = gps.receive();
-                gps.close();
+                tpvGps.open();
+                tpvGps.send(transaction);
+                transactionResponse = tpvGps.receive();
+                tpvGps.close();
                 break;
             case MODEM:
                 tpvModem.open();

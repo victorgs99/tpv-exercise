@@ -38,4 +38,9 @@ public class Verifone520Factory extends TPVAbstractFactory {
         return new VerifoneVx520Modem();
     }
 
+    @Override
+    public TPVGps getGps() {
+        return new VerifoneVx520GPS();
+    }
+
 }

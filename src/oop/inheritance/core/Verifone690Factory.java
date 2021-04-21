@@ -40,4 +40,9 @@ public class Verifone690Factory extends TPVAbstractFactory{
         return new VerifoneVx690Modem();
     }
 
+    @Override
+    public TPVGps getGps() {
+        return new VerifoneVx690GPS();
+    }
+
 }

@@ -18,6 +18,8 @@ public abstract class TPVAbstractFactory {
 
     public abstract TPVModem getModem();
 
+    public abstract TPVGps getGps();
+
     public static TPVAbstractFactory getFactory(SupportedTerminal supportedTerminal){
         return switch (supportedTerminal) {
             case INGENICO -> new IngenicoFactory();

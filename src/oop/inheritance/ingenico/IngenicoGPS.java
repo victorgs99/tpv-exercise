@@ -1,17 +1,17 @@
 package oop.inheritance.ingenico;
 
+import oop.inheritance.core.TPVGps;
 import oop.inheritance.data.Transaction;
 import oop.inheritance.data.TransactionResponse;
 
-public class IngenicoGPS {
+public class IngenicoGPS implements TPVGps {
     /**
      * Opens a connection using the GPS device
      *
-     * @return true if the connection was successfully opened
      */
-    public boolean open() {
+    public void open() {
 
-        return true;
+
     }
 
     /**

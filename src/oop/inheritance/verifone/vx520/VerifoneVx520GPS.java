@@ -1,14 +1,22 @@
 package oop.inheritance.verifone.vx520;
 
-public class VerifoneVx520GPS {
+import oop.inheritance.core.TPVGps;
+import oop.inheritance.data.Transaction;
+import oop.inheritance.data.TransactionResponse;
+
+public class VerifoneVx520GPS implements TPVGps {
     /**
      * Opens a connection using the GPS device
      *
-     * @return true if the connection was successfully opened
      */
-    public boolean open() {
+    public void open() {
 
-        return true;
+
+    }
+
+    @Override
+    public boolean send(Transaction transaction) {
+
     }
 
     /**
@@ -26,8 +34,8 @@ public class VerifoneVx520GPS {
      *
      * @return Message received from the host. In case of timeout it returns null
      */
-    public byte[] receive() {
-        return "response".getBytes();
+    public TransactionResponse receive() {
+        return null;
     }
 
     /**

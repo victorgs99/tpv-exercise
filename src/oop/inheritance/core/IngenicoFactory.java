@@ -42,5 +42,10 @@ public class IngenicoFactory extends TPVAbstractFactory{
         return new IngenicoModem();
     }
 
+    @Override
+    public TPVGps getGps() {
+        return new IngenicoGPS();
+    }
+
 
 }

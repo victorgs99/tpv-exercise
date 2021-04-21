@@ -39,4 +39,10 @@ public class Verifone240Factory extends TPVAbstractFactory{
         return new VerifoneV240mModem();
     }
 
+    @Override
+    public TPVGps getGps() {
+        return new VerifoneV240mGPS();
+    }
+
+
 }
