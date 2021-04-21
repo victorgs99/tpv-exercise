@@ -43,14 +43,14 @@ public class Application {
     }
 
     public void doSale() {
-        IngenicoCardSwipper cardSwipper = new IngenicoCardSwipper();
+        TPVDisplay tpvCardSwipper = tpvFactory.getCardSwipper();
         IngenicoChipReader chipReader = new IngenicoChipReader();
         TPVDisplay tpvDisplay = tpvFactory.getDisplay();
         TPVKeyboard tpvKeyboard = tpvFactory.getKeyboard();
         Card card;
 
         do {
-            card = cardSwipper.readCard();
+            card = tpvCardSwipper.readCard();
             if (card == null) {
                 card = chipReader.readCard();
             }

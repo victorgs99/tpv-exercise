@@ -10,6 +10,8 @@ public abstract class TPVAbstractFactory {
 
     public abstract TPVPrinter getPrinter();
 
+    public abstract TPVPrinter getCardSwipper();
+
     public static TPVAbstractFactory getFactory(SupportedTerminal supportedTerminal){
         return switch (supportedTerminal) {
             case INGENICO -> new IngenicoFactory();

@@ -19,5 +19,9 @@ public class Verifone690Factory extends TPVAbstractFactory{
         return new VerifoneVx690Printer();
     }
 
+    @Override
+    public TPVCardSwipper getCardSwipper() {
+        return new VerifoneVx690CardSwipper();
+    }
 
 }
