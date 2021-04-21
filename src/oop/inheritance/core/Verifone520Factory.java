@@ -23,4 +23,11 @@ public class Verifone520Factory extends TPVAbstractFactory {
     public TPVCardSwipper getCardSwipper() {
         return new VerifoneVx520CardSwipper();
     }
+
+    @Override
+    public TPVChipReader getChipReader() {
+        return new VerifoneVx520ChipReader();
+    }
+
+
 }

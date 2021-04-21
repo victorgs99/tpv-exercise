@@ -4,7 +4,7 @@ import oop.inheritance.data.Card;
 import oop.inheritance.data.EntryMode;
 import oop.inheritance.data.ExpirationDate;
 
-public class VerifoneVx690ChipReader {
+public class VerifoneVx690ChipReader implements TPVChipReader{
 
     public Card readCard() {
         return Card.builder()

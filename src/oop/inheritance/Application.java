@@ -42,17 +42,18 @@ public class Application {
         return tpvKeyboard.get();
     }
 
+
     public void doSale() {
         TPVDisplay tpvCardSwipper = tpvFactory.getCardSwipper();
-        IngenicoChipReader chipReader = new IngenicoChipReader();
+        TPVChipReader tpvChipReader = tpvFactory.getChipReader();
         TPVDisplay tpvDisplay = tpvFactory.getDisplay();
         TPVKeyboard tpvKeyboard = tpvFactory.getKeyboard();
         Card card;
-
+        //Metodo Externo
         do {
             card = tpvCardSwipper.readCard();
             if (card == null) {
-                card = chipReader.readCard();
+                card = tpvChipReader.readCard();
             }
         } while (card == null);
 
@@ -61,8 +62,8 @@ public class Application {
 
         String amount = tpvKeyboard.get(); //Amount with decimal point as string
 
+        //Metodo Externo
         Transaction transaction = new Transaction();
-
         transaction.setLocalDateTime(LocalDateTime.now());
         transaction.setCard(card);
         transaction.setAmountInCents(Integer.parseInt(amount.replace(".", "")));

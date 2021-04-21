@@ -23,4 +23,11 @@ public class Verifone240Factory extends TPVAbstractFactory{
     public TPVCardSwipper getCardSwipper() {
         return new VerifoneV240mCardSwipper();
     }
+
+    @Override
+    public TPVChipReader getChipReader() {
+        return new VerifoneV240mChipReader();
+    }
+
+
 }

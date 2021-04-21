@@ -4,7 +4,7 @@ import oop.inheritance.data.Card;
 import oop.inheritance.data.EntryMode;
 import oop.inheritance.data.ExpirationDate;
 
-public class IngenicoChipReader {
+public class IngenicoChipReader implements TPVChipReader{
 
     public Card readCard() {
         return Card.builder()

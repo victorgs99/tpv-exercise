@@ -25,4 +25,12 @@ public class IngenicoFactory extends TPVAbstractFactory{
         return new IngenicoCardSwipper();
     }
 
+
+    @Override
+    public TPVChipReader getChipReader() {
+        return new IngenicoChipReader();
+    }
+
+
+
 }
