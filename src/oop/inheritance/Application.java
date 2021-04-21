@@ -44,39 +44,52 @@ public class Application {
 
 
     public void doSale() {
-        TPVDisplay tpvCardSwipper = tpvFactory.getCardSwipper();
+        TPVCardSwipper tpvCardSwipper = tpvFactory.getCardSwipper();
         TPVChipReader tpvChipReader = tpvFactory.getChipReader();
         TPVDisplay tpvDisplay = tpvFactory.getDisplay();
         TPVKeyboard tpvKeyboard = tpvFactory.getKeyboard();
-        Card card;
-        //Metodo Externo
-        do {
-            card = tpvCardSwipper.readCard();
-            if (card == null) {
-                card = tpvChipReader.readCard();
-            }
-        } while (card == null);
+
+        Card card = readCard(tpvChipReader,tpvCardSwipper);
+
 
         tpvDisplay.clear();
         tpvDisplay.showMessage(5, 20, "Capture monto:");
 
         String amount = tpvKeyboard.get(); //Amount with decimal point as string
 
-        //Metodo Externo
-        Transaction transaction = new Transaction();
-        transaction.setLocalDateTime(LocalDateTime.now());
-        transaction.setCard(card);
-        transaction.setAmountInCents(Integer.parseInt(amount.replace(".", "")));
-
-        TransactionResponse response = sendSale(transaction);
-
-        if (response.isApproved()) {
+        if (doTransaction(card)) {
             tpvDisplay.showMessage(5, 25, "APROBADA");
             printReceipt(transaction, response.getHostReference());
         } else {
             tpvDisplay.showMessage(5, 25, "DENEGADA");
         }
     }
+
+
+    private Card readCard(TPVCardSwipper tpvChipReader, TPVCardSwipper tpvCardSwipper){
+      Card card=null;
+      do {
+          card = tpvCardSwipper.readCard();
+          if (card == null) {
+              card = tpvChipReader.readCard();
+          }
+      } while (card == null);
+      return card;
+    }
+
+
+    private boolean doTransaction(Card card){
+      Transaction transaction = new Transaction();
+      transaction.setLocalDateTime(LocalDateTime.now());
+      transaction.setCard(card);
+      transaction.setAmountInCents(Integer.parseInt(amount.replace(".", "")));
+
+      TransactionResponse response = sendSale(transaction);
+      return response;
+    }
+
+
+
 
     private void printReceipt(Transaction transaction, String hostReference) {
 
