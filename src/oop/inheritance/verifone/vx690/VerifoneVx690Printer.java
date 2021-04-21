@@ -1,5 +1,5 @@
 package oop.inheritance.verifone.vx690;
-
+import oop.inheritance.core.TPVPrinter;
 public class VerifoneVx690Printer implements TPVPrinter{
 
     /**

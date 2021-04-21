@@ -1,6 +1,7 @@
 package oop.inheritance.verifone.vx520;
 
-public class VerifoneVx520Ethernet {
+import oop.inheritance.core.TPVEthernet;
+public class VerifoneVx520Ethernet implements TPVEthernet{
 
     /**
      * Opens a connection using the ethernet device

@@ -1,9 +1,9 @@
 package oop.inheritance.ingenico;
-
+import oop.inheritance.core.TPVEthernet;
 import oop.inheritance.data.Transaction;
 import oop.inheritance.data.TransactionResponse;
 
-public class IngenicoEthernet {
+public class IngenicoEthernet implements TPVEthernet{
 
     /**
      * Opens a connection using the ethernet device

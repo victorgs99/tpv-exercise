@@ -1,4 +1,5 @@
 package oop.inheritance.verifone.v240m;
+import oop.inheritance.core.TPVCardSwipper;
 
 import oop.inheritance.data.Card;
 import oop.inheritance.data.EntryMode;

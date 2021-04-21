@@ -14,6 +14,8 @@ public abstract class TPVAbstractFactory {
 
     public abstract TPVPrinter getChipReader();
 
+    public abstract TPVEthernet getEthernet();
+
     public static TPVAbstractFactory getFactory(SupportedTerminal supportedTerminal){
         return switch (supportedTerminal) {
             case INGENICO -> new IngenicoFactory();

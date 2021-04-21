@@ -1,5 +1,5 @@
 package oop.inheritance.verifone.v240m;
-
+import oop.inheritance.core.TPVChipReader;
 import oop.inheritance.data.Card;
 import oop.inheritance.data.EntryMode;
 import oop.inheritance.data.ExpirationDate;

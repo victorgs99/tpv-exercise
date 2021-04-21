@@ -1,5 +1,5 @@
 package oop.inheritance.ingenico;
-
+import oop.inheritance.core.TPVChipReader;
 import oop.inheritance.data.Card;
 import oop.inheritance.data.EntryMode;
 import oop.inheritance.data.ExpirationDate;

@@ -2,6 +2,10 @@ package oop.inheritance.core;
 
 import oop.inheritance.ingenico.IngenicoDisplay;
 import oop.inheritance.ingenico.IngenicoKeyboard;
+import oop.inheritance.ingenico.IngenicoPrinter;
+import oop.inheritance.ingenico.IngenicoCardSwipper;
+import oop.inheritance.ingenico.IngenicoChipReader;
+import oop.inheritance.ingenico.IngenicoEthernet;
 
 public class IngenicoFactory extends TPVAbstractFactory{
 
@@ -29,6 +33,12 @@ public class IngenicoFactory extends TPVAbstractFactory{
     @Override
     public TPVChipReader getChipReader() {
         return new IngenicoChipReader();
+    }
+
+
+    @Override
+    public TPVEthernet getEthernet() {
+        return new IngenicoEthernet();
     }
 
 

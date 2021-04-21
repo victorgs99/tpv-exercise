@@ -1,5 +1,5 @@
 package oop.inheritance.verifone.vx690;
-
+import oop.inheritance.core.TPVCardSwipper;
 import oop.inheritance.data.Card;
 import oop.inheritance.data.EntryMode;
 import oop.inheritance.data.ExpirationDate;

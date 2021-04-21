@@ -107,17 +107,17 @@ public class Application {
     }
 
     private TransactionResponse sendSale(Transaction transaction) {
-        IngenicoEthernet ethernet = new IngenicoEthernet();
+        TPVEthernet TPVEthernet = tpvFactory.getEthernet();
         IngenicoModem modem = new IngenicoModem();
         IngenicoGPS gps = new IngenicoGPS();
         TransactionResponse transactionResponse = null;
 
         switch (communicationType) {
             case ETHERNET:
-                ethernet.open();
-                ethernet.send(transaction);
-                transactionResponse = ethernet.receive();
-                ethernet.close();
+                TPVEthernet.open();
+                TPVEthernet.send(transaction);
+                transactionResponse = TPVEthernet.receive();
+                TPVEthernet.close();
                 break;
             case GPS:
                 gps.open();
@@ -135,6 +135,9 @@ public class Application {
 
         return transactionResponse;
     }
+
+
+
 
     public void doRefund() {
     }

@@ -1,5 +1,5 @@
 package oop.inheritance.verifone.v240m;
-
+import oop.inheritance.core.TPVPrinter;
 public class VerifoneV240mPrinter {
 
     /**

@@ -1,5 +1,5 @@
 package oop.inheritance.ingenico;
-
+import oop.inheritance.core.TPVPrinter;
 public class IngenicoPrinter implements TPVPrinter {
 
     /**
