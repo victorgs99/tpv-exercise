@@ -10,11 +10,13 @@ public abstract class TPVAbstractFactory {
 
     public abstract TPVPrinter getPrinter();
 
-    public abstract TPVPrinter getCardSwipper();
+    public abstract TPVCardSwipper getCardSwipper();
 
-    public abstract TPVPrinter getChipReader();
+    public abstract TPVChipReader getChipReader();
 
     public abstract TPVEthernet getEthernet();
+
+    public abstract TPVModem getModem();
 
     public static TPVAbstractFactory getFactory(SupportedTerminal supportedTerminal){
         return switch (supportedTerminal) {

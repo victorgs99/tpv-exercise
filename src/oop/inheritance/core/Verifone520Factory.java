@@ -1,11 +1,6 @@
 package oop.inheritance.core;
 
-import oop.inheritance.verifone.vx520.VerifoneVx520Display;
-import oop.inheritance.verifone.vx520.VerifoneVx520Keyboard;
-import oop.inheritance.verifone.vx520.VerifoneVx520Printer;
-import oop.inheritance.verifone.vx520.VerifoneVx520CardSwipper;
-import oop.inheritance.verifone.vx520.VerifoneVx520ChipReader;
-import oop.inheritance.verifone.vx520.VerifoneVx520Ethernet;
+import oop.inheritance.verifone.vx520.*;
 
 public class Verifone520Factory extends TPVAbstractFactory {
     @Override
@@ -38,5 +33,9 @@ public class Verifone520Factory extends TPVAbstractFactory {
         return new VerifoneVx520Ethernet();
     }
 
+    @Override
+    public TPVModem getModem() {
+        return new VerifoneVx520Modem();
+    }
 
 }

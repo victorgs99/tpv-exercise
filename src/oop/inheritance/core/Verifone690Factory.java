@@ -1,11 +1,6 @@
 package oop.inheritance.core;
 
-import oop.inheritance.verifone.vx690.VerifoneVx690Display;
-import oop.inheritance.verifone.vx690.VerifoneVx690Keyboard;
-import oop.inheritance.verifone.vx690.VerifoneVx690Printer;
-import oop.inheritance.verifone.vx690.VerifoneVx690CardSwipper;
-import oop.inheritance.verifone.vx690.VerifoneVx690ChipReader;
-import oop.inheritance.verifone.vx690.VerifoneVx690Ethernet;
+import oop.inheritance.verifone.vx690.*;
 
 public class Verifone690Factory extends TPVAbstractFactory{
     @Override
@@ -37,6 +32,12 @@ public class Verifone690Factory extends TPVAbstractFactory{
     @Override
     public TPVEthernet getEthernet() {
         return new VerifoneVx690Ethernet();
+    }
+
+
+    @Override
+    public TPVModem getModem() {
+        return new VerifoneVx690Modem();
     }
 
 }

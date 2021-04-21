@@ -1,9 +1,10 @@
 package oop.inheritance.ingenico;
 
+import oop.inheritance.core.TPVModem;
 import oop.inheritance.data.Transaction;
 import oop.inheritance.data.TransactionResponse;
 
-public class IngenicoModem {
+public class IngenicoModem implements TPVModem {
 
     /**
      * Opens a connection using the modem device
@@ -13,6 +14,16 @@ public class IngenicoModem {
     public boolean open() {
 
         return true;
+    }
+
+
+    /**
+     * Method blocks until host send a response or until a timeout is reached.
+     *
+     * @return Message received from the host. In case of timeout it returns null
+     */
+    public TransactionResponse receive() {
+        return null;
     }
 
     /**
@@ -30,9 +41,7 @@ public class IngenicoModem {
      *
      * @return Message received from the host. In case of timeout it returns null
      */
-    public TransactionResponse receive() {
-        return new TransactionResponse(true, "132123");
-    }
+
 
     /**
      * Closes the channel releasing every used resources

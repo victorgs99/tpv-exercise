@@ -2,9 +2,7 @@ package oop.inheritance;
 
 import java.time.LocalDateTime;
 
-import oop.inheritance.core.TPVAbstractFactory;
-import oop.inheritance.core.TPVDisplay;
-import oop.inheritance.core.TPVKeyboard;
+import oop.inheritance.core.*;
 import oop.inheritance.data.Card;
 import oop.inheritance.data.CommunicationType;
 import oop.inheritance.data.SupportedTerminal;
@@ -49,7 +47,7 @@ public class Application {
         TPVDisplay tpvDisplay = tpvFactory.getDisplay();
         TPVKeyboard tpvKeyboard = tpvFactory.getKeyboard();
 
-        Card card = readCard(tpvChipReader,tpvCardSwipper);
+        Card card = readCard(tpvCardSwipper,tpvChipReader);
 
 
         tpvDisplay.clear();
@@ -57,16 +55,16 @@ public class Application {
 
         String amount = tpvKeyboard.get(); //Amount with decimal point as string
 
-        if (doTransaction(card)) {
+        if (doTransaction(card,amount)) {
             tpvDisplay.showMessage(5, 25, "APROBADA");
-            printReceipt(transaction, response.getHostReference());
+            //printReceipt(transaction, response.getHostReference());
         } else {
             tpvDisplay.showMessage(5, 25, "DENEGADA");
         }
     }
 
 
-    private Card readCard(TPVCardSwipper tpvChipReader, TPVCardSwipper tpvCardSwipper){
+    private Card readCard(TPVCardSwipper tpvCardSwipper, TPVChipReader tpvChipReader){
       Card card=null;
       do {
           card = tpvCardSwipper.readCard();
@@ -78,14 +76,14 @@ public class Application {
     }
 
 
-    private boolean doTransaction(Card card){
+    private boolean doTransaction(Card card,String amount){
       Transaction transaction = new Transaction();
       transaction.setLocalDateTime(LocalDateTime.now());
       transaction.setCard(card);
       transaction.setAmountInCents(Integer.parseInt(amount.replace(".", "")));
 
       TransactionResponse response = sendSale(transaction);
-      return response;
+      return response.isApproved();
     }
 
 
@@ -107,17 +105,17 @@ public class Application {
     }
 
     private TransactionResponse sendSale(Transaction transaction) {
-        TPVEthernet TPVEthernet = tpvFactory.getEthernet();
-        IngenicoModem modem = new IngenicoModem();
+        TPVEthernet tpvEthernet = tpvFactory.getEthernet();
+        TPVModem tpvModem = tpvFactory.getModem();
         IngenicoGPS gps = new IngenicoGPS();
         TransactionResponse transactionResponse = null;
 
         switch (communicationType) {
             case ETHERNET:
-                TPVEthernet.open();
-                TPVEthernet.send(transaction);
-                transactionResponse = TPVEthernet.receive();
-                TPVEthernet.close();
+                tpvEthernet.open();
+                tpvEthernet.send(transaction);
+                transactionResponse = tpvEthernet.receive();
+                tpvEthernet.close();
                 break;
             case GPS:
                 gps.open();
@@ -126,10 +124,10 @@ public class Application {
                 gps.close();
                 break;
             case MODEM:
-                modem.open();
-                modem.send(transaction);
-                transactionResponse = modem.receive();
-                modem.close();
+                tpvModem.open();
+                tpvModem.send(transaction);
+                transactionResponse = tpvModem.receive();
+                tpvModem.close();
                 break;
         }
 
