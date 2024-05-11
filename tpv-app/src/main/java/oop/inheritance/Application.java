@@ -6,6 +6,7 @@ import oop.inheritance.data.CommunicationType;
 import oop.inheritance.data.SupportedTerminal;
 import oop.library.ingenico.model.Card;
 import oop.library.ingenico.model.Transaction;
+import oop.library.ingenico.model.TransactionBuilder;
 import oop.library.ingenico.model.TransactionResponse;
 import oop.library.ingenico.services.*;
 import oop.library.v240m.VerifoneV240mDisplay;
@@ -65,11 +66,11 @@ public class Application {
 
         String amount = ingenicoKeyboard.get(); //Amount with decimal point as string
 
-        Transaction transaction = new Transaction();
-
-        transaction.setLocalDateTime(LocalDateTime.now());
-        transaction.setCard(card);
-        transaction.setAmountInCents(Integer.parseInt(amount.replace(".", "")));
+        Transaction transaction = Transaction.builder()
+                        .localDateTime(LocalDateTime.now())
+                        .card(card)
+                        .amountInCents(Integer.parseInt(amount.replace(".", "")))
+                        .build();
 
         TransactionResponse response = sendSale(transaction);
 
