@@ -1,6 +1,16 @@
 package oop.library.ingenico.services;
 
-public class IngenicoKeyboard {
+public final class IngenicoKeyboard {
+    private static IngenicoKeyboard instance;
+
+    private IngenicoKeyboard(){}
+
+    public static IngenicoKeyboard getInstance(){
+        if (instance == null)
+            instance = new IngenicoKeyboard();
+
+        return instance;
+    }
 
     /**
      * @return key pressed

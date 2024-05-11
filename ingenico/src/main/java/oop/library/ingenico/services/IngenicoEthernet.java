@@ -3,8 +3,17 @@ package oop.library.ingenico.services;
 import oop.library.ingenico.model.Transaction;
 import oop.library.ingenico.model.TransactionResponse;
 
-public class IngenicoEthernet {
+public final class IngenicoEthernet {
+    private static IngenicoEthernet instance;
 
+    private IngenicoEthernet(){}
+
+    public static IngenicoEthernet getInstance(){
+        if (instance == null)
+            instance = new IngenicoEthernet();
+
+        return instance;
+    }
     /**
      * Opens a connection using the ethernet device
      *
