@@ -1,6 +1,16 @@
 package oop.library.ingenico.services;
 
-public class IngenicoPrinter {
+public final class IngenicoPrinter {
+    private static IngenicoPrinter instance;
+
+    private IngenicoPrinter(){}
+
+    public static IngenicoPrinter getInstance(){
+        if (instance == null)
+            instance = new IngenicoPrinter();
+
+        return instance;
+    }
 
     /**
      * Prints a message on the current line at the specified horizontal position

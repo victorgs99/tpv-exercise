@@ -3,7 +3,17 @@ package oop.library.ingenico.services;
 import oop.library.ingenico.model.Transaction;
 import oop.library.ingenico.model.TransactionResponse;
 
-public class IngenicoGPS {
+public final class IngenicoGPS {
+    private static IngenicoGPS instance;
+
+    private IngenicoGPS(){}
+
+    public static IngenicoGPS getInstance(){
+        if (instance == null)
+            instance = new IngenicoGPS();
+
+        return instance;
+    }
     /**
      * Opens a connection using the GPS device
      *
