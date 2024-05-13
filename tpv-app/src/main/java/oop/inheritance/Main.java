@@ -1,11 +1,16 @@
 package oop.inheritance;
 
-import oop.inheritance.data.SupportedTerminal;
+import oop.inheritance.data.SupportedTpvModels;
+import oop.inheritance.ingenico.factory.IngenicoTpvFactory;
+import oop.inheritance.tpv.Tpv;
+import oop.inheritance.tpv.factory.TpvFactory;
 
 public class Main {
 
     public static void main(String[] args) {
-        Application application = new Application(SupportedTerminal.INGENICO);
+        TpvFactory tpvFactory = new IngenicoTpvFactory();
+        Tpv ingenicoTpv = tpvFactory.create(SupportedTpvModels.INGENICO);
+        Application application = new Application(ingenicoTpv);
 
         while (true) {
 
@@ -22,5 +27,4 @@ public class Main {
             }
         }
     }
-
 }

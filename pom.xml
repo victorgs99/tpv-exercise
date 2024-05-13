@@ -37,11 +37,6 @@
     </build>
 
     <modules>
-        <module>ingenico</module>
-        <module>verifone-data</module>
-        <module>verifone240m</module>
-        <module>verifone520</module>
-        <module>verifone690</module>
         <module>tpv-app</module>
     </modules>
 </project>
